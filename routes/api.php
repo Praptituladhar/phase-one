@@ -12,7 +12,7 @@ Route::get('/', function () {
     ]);
 });
 
-
+Route::get('/users', [UserController::class, 'show']);
 Route::get('/pupuli', function () {
     return response()->json([
         "name" => "prasis",
