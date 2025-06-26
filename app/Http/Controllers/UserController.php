@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -11,15 +13,27 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $data = User::all();
+        return response()->json($data);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = $request->all();
+        $result = User::create(
+            [
+            'name'=>$data['name'],
+            'email'=>$data['email'],
+            'password'=>Hash::make($data['password']),
+            ]
+        );
+        return response()->json([
+            "message" => "User created successfully",
+            "data" => $result
+        ], 200);
     }
 
     /**

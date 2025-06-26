@@ -12,7 +12,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/users', [UserController::class, 'show']);
 Route::get('/pupuli', function () {
     return response()->json([
         "name" => "prasis",
@@ -20,3 +19,7 @@ Route::get('/pupuli', function () {
         "message" => "love you yeti dherai mero  pupuli"
     ]);
 });
+
+// user routes
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/user', [UserController::class, 'create']);
